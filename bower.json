@@ -1,0 +1,21 @@
+{
+  "name": "cryptoprice-dash",
+  "authors": [
+    "Odel W Palmer <opalmer@truthtechnologies.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0"
+  }
+}
