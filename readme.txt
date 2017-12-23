@@ -7,8 +7,10 @@ polymer init
 
 bower install --save PolymerElements/iron-ajax
 bower install --save PolymerElements/paper-spinner
+bower install --save chart.js
 
 polymer serve
 
 Notes:
 Lecture 40: response = Event.detail.__data.response.data.amount.
+Lecture 47: Event.detail.__data.response.data.
