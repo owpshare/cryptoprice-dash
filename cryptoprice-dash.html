@@ -3,6 +3,7 @@
 <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
 
 <script src="bower_components/chart.js/dist/Chart.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
 
 <dom-module id="cryptoprice-dash">
     <template>
@@ -106,10 +107,18 @@
                 var price = [];
                 console.log("Foo: ", data.response.data.prices);
                 data.response.data.prices.forEach(function(element) {
-                    label.push(element.time);
+                    label.push(this._computeDateTime(element.time));
                     price.push(element.price);
-                });
+                }, this);
                 this._generateLineChart(label, price, code);
+            }
+
+            _computeDateTime(datestring) {
+                if (datestring) {
+                    return moment(datestring, "YYYY-MM-DDThh:mm:aa2").format("M/DD/YYYY h:mm a");
+                } else {
+                    return datestring;
+                }
             }
 
             _generateLineChart(label, price, labelName) {
