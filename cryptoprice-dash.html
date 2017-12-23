@@ -5,6 +5,9 @@
     <template>
         <h2>Hello world</h2>
         <iron-ajax id="coinbase" handle-as"json" on-response="_handleResponse"></iron-ajax>
+        <p>[[currencies.0.code]] - [[currencies.0.name]] - [[currencies.0.price]]</p>
+        <p>[[currencies.1.code]] - [[currencies.1.name]] - [[currencies.1.price]]</p>
+        <p>[[currencies.2.code]] - [[currencies.2.name]] - [[currencies.2.price]]</p>
     </template>
     <script>
         class CryptopriceDash extends Polymer.Element {
@@ -19,15 +22,18 @@
                         value: [
                             {
                                 code: "BTC",
-                                name: "Bitcoin"
+                                name: "Bitcoin",
+                                price: 0
                             },
                             {
                                 code: "ETH",
-                                name: "Ethereum"
+                                name: "Ethereum",
+                                price: 0
                             },
                             {
                                 code: "LTC",
-                                name: "Litecoin"
+                                name: "Litecoin",
+                                price: 0
                             }
                         ]
                     }
@@ -51,7 +57,16 @@
             }
 
             _handleResponse(response) {
-                console.log(response);
+                this._computeCurrencyPrice(response.detail);
+            }
+
+            _computeCurrencyPrice(data) {
+                var code = data.url.substring(35, 38);
+                var index = this.currencies.map(function(e) {
+                    return e.code;
+                }).indexOf(code);
+                this.set("currencies." + index + ".price", data.response.data.amount);
+
             }
         }
 
