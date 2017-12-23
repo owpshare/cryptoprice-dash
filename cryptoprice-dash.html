@@ -1,13 +1,20 @@
 <link rel="import" href="bower_components/polymer/polymer-element.html">
 <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
 
 <dom-module id="cryptoprice-dash">
     <template>
         <h2>Hello world</h2>
-        <iron-ajax id="coinbase" handle-as"json" on-response="_handleResponse"></iron-ajax>
-        <template is="dom-repeat" items="[[currencies]]">
-            <p>[[index]]: [[item.code]] - [[item.name]] - $[[item.price]]</p>
-        </template>
+        <iron-ajax id="coinbase" handle-as"json" on-response="_handleResponse" loading="{{loading}}"></iron-ajax>
+        
+        <!-- <paper-spinner-lite active="[[loading]]"></paper-spinner-lite> -->
+        <paper-spinner active="[[loading]]" class="orange"></paper-spinner>
+        
+        <div hidden$="[[loading]]">
+            <template is="dom-repeat" items="[[currencies]]">
+                <p>[[index]]: [[item.code]] - [[item.name]] - $[[item.price]]</p>
+            </template>
+        </div>
     </template>
     <script>
         class CryptopriceDash extends Polymer.Element {
@@ -36,6 +43,11 @@
                                 price: 0
                             }
                         ]
+                    },
+                    loading: {
+                        type: Boolean,
+                        notify: true,
+                        value: false
                     }
                 }
             }
@@ -66,7 +78,6 @@
                     return e.code;
                 }).indexOf(code);
                 this.set("currencies." + index + ".price", data.response.data.amount);
-
             }
         }
 
