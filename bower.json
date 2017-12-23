@@ -18,6 +18,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^2.0.6",
-    "paper-spinner": "PolymerElements/paper-spinner#^2.0.0"
+    "paper-spinner": "PolymerElements/paper-spinner#^2.0.0",
+    "chart.js": "^2.7.1"
   }
 }
