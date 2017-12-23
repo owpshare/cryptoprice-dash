@@ -55,7 +55,8 @@
             ready() {
                 super.ready();
                 Polymer.RenderStatus.afterNextRender(this, function() {
-                    this._getCurrencyData();
+                    //this._getCurrencyData();
+                    this._getCurrencyHistoricalData(this.currencies[0].code);
                 });
             }
             
@@ -67,9 +68,19 @@
                     ajax.generateRequest();
                 });
             }
+            
+            _getCurrencyHistoricalData(currency) {
+                var ajax = this.$.coinbase;
+                ajax.url = "https://api.coinbase.com/v2/prices/" + currency + "-USD/historic?period=week";
+                ajax.generateRequest();
+            }
 
             _handleResponse(response) {
-                this._computeCurrencyPrice(response.detail);
+                if (response.detail.response.data.amount != null) {
+                    this._computeCurrencyPrice(response.detail);
+                } else {
+                    console.log(response);
+                }
             }
 
             _computeCurrencyPrice(data) {
