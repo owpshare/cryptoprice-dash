@@ -77,7 +77,7 @@
                 var ajax = this.$.coinbase;
                 var currencies = this.currencies;
                 currencies.forEach(function(element) {
-                    ajax.url = "https://api.coinbase.com/v2/prices/" + element.code + "-USD/spot";
+                    ajax.url =  "https://api.coinbase.com/v2/prices/" + element.code + "-USD/spot";
                     ajax.generateRequest();
                 });
             }
