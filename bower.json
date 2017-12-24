@@ -21,6 +21,8 @@
     "paper-spinner": "PolymerElements/paper-spinner#^2.0.0",
     "chart.js": "^2.7.1",
     "moment": "^2.20.1",
-    "paper-button": "^2.0.0"
+    "paper-button": "^2.0.0",
+    "paper-styles": "PolymerElements/paper-styles#^2.0.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.1"
   }
 }

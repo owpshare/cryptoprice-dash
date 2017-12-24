@@ -10,6 +10,8 @@ bower install --save PolymerElements/paper-spinner
 bower install --save chart.js
 bower install --save moment
 bower install --save paper-button
+bower install --save PolymerElements/paper-styles
+bower install --save PolymerElements/iron-flex-layout
 
 polymer serve
 
