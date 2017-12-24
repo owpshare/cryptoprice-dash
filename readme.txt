@@ -9,6 +9,7 @@ bower install --save PolymerElements/iron-ajax
 bower install --save PolymerElements/paper-spinner
 bower install --save chart.js
 bower install --save moment
+bower install --save paper-button
 
 polymer serve
 

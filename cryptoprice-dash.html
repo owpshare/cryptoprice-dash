@@ -1,6 +1,7 @@
 <link rel="import" href="bower_components/polymer/polymer-element.html">
 <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
 
 <script src="bower_components/chart.js/dist/Chart.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
@@ -15,7 +16,9 @@
         
         <div hidden$="[[loading]]">
             <template is="dom-repeat" items="[[currencies]]">
-                <p>[[index]]: [[item.code]] - [[item.name]] - $[[item.price]]</p>
+                <paper-button noink on-click="_getCurrencyHistoricalData" data-item$="[[item.code]]">
+                    [[item.name]] - $[[item.price]]
+                </paper-button>
             </template>
         </div>
 
@@ -80,6 +83,9 @@
             }
             
             _getCurrencyHistoricalData(currency) {
+                if (event) {
+                    currency = event.target.dataset.item;
+                }
                 var ajax = this.$.coinbase;
                 ajax.url = "https://api.coinbase.com/v2/prices/" + currency + "-USD/historic?period=week";
                 ajax.generateRequest();
